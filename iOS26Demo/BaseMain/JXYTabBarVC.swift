@@ -3,7 +3,7 @@
 //  JXYApp
 //
 //  Created by ptlCoder on 2024/5/23.
-//
+// UITabBarItem 写的
 
 import UIKit
 
@@ -12,59 +12,108 @@ class JXYTabBarVC: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        setUpChildViewController()
         
         self.delegate = self
-        tabs.append(configTab(FirstViewController(), title: "wechat", imageName: "message", identifier: "tab_1", badgeValue: "3"))
-        tabs.append(configTab(SecondViewController(), title: "通讯录", imageName: "person.2", identifier: "tab_2"))
-        tabs.append(configTab(ThreeViewController(), title: "发现", imageName: "safari", identifier: "tab_3"))
-        tabs.append(configTab(FourViewController(), title: "我", imageName: "person", identifier: "tab_4"))
-        tabs.append(configSearchTab(SearchViewController(), title: "搜索"))
-//        selectedTab = tabs.last // 搜索
-        // iOS26新增，向下滚动时，只显示第一个与UISearchTab的图标，中间显示辅助UITabAccessory
-        self.tabBarMinimizeBehavior = .onScrollDown
-        // iOS26新增
-        self.bottomAccessory = UITabAccessory(contentView: UIToolbar())
-    }
-    
-}
 
-extension JXYTabBarVC {
-    // MARK: 设置UITab
-    func configTab(_ viewController: UIViewController,
-                   title: String,
-                   imageName: String,
-                   identifier: String,
-                   badgeValue: String? = nil) -> UITab {
+        setUpChildViewController()
+//
+        // 示例：为“消息”标签设置红色徽章，与选中状态一致
+        let messageItem = children[1].tabBarItem
+        messageItem?.badgeValue = "3" // 设置角标，其他熟悉见setAppearance
+ 
         
-        let tab = UITab(title: title, image: UIImage(systemName: imageName), identifier: identifier) { tab in
-            tab.badgeValue = badgeValue
-            tab.userInfo = identifier
-            return self.configViewController(viewController: viewController, title: title)
+        
+        // 悬浮条
+        // iOS26新增
+        if #available(iOS 26.0, *) {
+//            self.bottomAccessory = UITabAccessory(contentView: UIToolbar())
+        } else {
+            // Fallback on earlier versions
         }
-        return tab
-    }
-
-    // MARK: 设置UISearchTab
-    func configSearchTab(_ viewController: UIViewController, title: String) -> UISearchTab {
-        // UISearchTab，从TabBar分离出来单独显示
-        let searchTab = UISearchTab { tab in
-            return self.configViewController(viewController: viewController, title: title)
+        
+        // iOS26新增，向下滚动时，只显示第一个与UISearchTab的图标，中间显示辅助UITabAccessory
+        if #available(iOS 26.0, *) {
+            self.tabBarMinimizeBehavior = .onScrollDown
+        } else {
+            // Fallback on earlier versions
         }
-//        searchTab.automaticallyActivatesSearch = true
-        return searchTab
+        
+        
     }
-
-    // MARK: 设置UIViewController
-    func configViewController(viewController: UIViewController, title: String) -> BaseNavViewController {
-        let navigationController = BaseNavViewController(rootViewController: viewController)
-        viewController.navigationItem.title = title
-        return navigationController
+ 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // MARK: 注意：为了防止被系统覆盖，此设置放到viewDidAppear中
+        setAppearance()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
     }
 }
 
 extension JXYTabBarVC {
     
+    // MARK: 注意：为了防止被系统覆盖，此设置放到viewDidAppear中
+    func setAppearance() {
+        let appearance = UITabBarAppearance()
+        appearance.configureWithTransparentBackground()
+
+        // 默认文字
+        let normal = appearance.stackedLayoutAppearance.normal
+        normal.titleTextAttributes = [
+            .foregroundColor: UIColor.gray,
+//            .font: UIFont.systemFont(ofSize: 18)
+        ]
+        // 默认文字偏移量
+//        normal.titlePositionAdjustment = UIOffset(horizontal: 5, vertical: -5)
+        
+        // 如果tabBarItem.image图片渲染模式是alwaysOriginal，该方法设置无效，以实际图片为准
+//        normal.iconColor = .gray
+
+        // 设置角标
+        normal.badgeBackgroundColor = .black
+        normal.badgeTextAttributes = [.foregroundColor: UIColor.white,
+//                                      .font: UIFont.systemFont(ofSize: 15)
+        ]
+        // 设置角标偏移量
+//        normal.badgePositionAdjustment = UIOffset(horizontal: -5, vertical: -5)
+        
+        
+        let selected = appearance.stackedLayoutAppearance.selected
+        selected.titleTextAttributes = [
+            .foregroundColor: UIColor.red,
+//            .font: UIFont.systemFont(ofSize: 18)
+        ]
+        // 默认文字偏移量
+//        selected.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 0)
+        
+        // 如果tabBarItem.image图片渲染模式是alwaysOriginal，该方法设置无效，以实际图片为准
+//        selected.iconColor = .red
+
+        // 设置角标
+        selected.badgeBackgroundColor = .red
+        selected.badgeTextAttributes = [.foregroundColor: UIColor.white,
+//                                        .font: UIFont.systemFont(ofSize: 15)
+        ]
+        // 设置角标偏移量
+//        selected.badgePositionAdjustment = UIOffset(horizontal: -5, vertical: -5)
+        
+        
+        appearance.inlineLayoutAppearance = appearance.stackedLayoutAppearance
+        appearance.compactInlineLayoutAppearance = appearance.stackedLayoutAppearance
+
+        tabBar.standardAppearance = appearance
+        if #available(iOS 15.0, *) {
+            tabBar.scrollEdgeAppearance = appearance
+        }
+        
+    }
+
+}
+
+extension JXYTabBarVC {
     
     func setUpChildViewController() {
         let vc1 = FirstViewController()
@@ -74,29 +123,49 @@ extension JXYTabBarVC {
         
         let vc2 = SecondViewController()
         let nav2 = BaseNavViewController(rootViewController: vc2)
-        addChild(vc: nav2, title: "动态", norImageName: "information_0", selImageName: "information_15")
+        addChild(vc: nav2, title: "通讯录", norImageName: "information_0", selImageName: "information_15")
         
         
         let vc3 = ThreeViewController()
         let nav3 = BaseNavViewController(rootViewController: vc3)
-        addChild(vc: nav3, title: "我的", norImageName: "mine_0", selImageName: "mine_15")
+        addChild(vc: nav3, title: "", norImageName: "center_icon", selImageName: "center_icon")
+        
+        let vc4 = SearchViewController()
+        let nav4 = BaseNavViewController(rootViewController: vc4)
+        addChild(vc: nav4, title: "搜索", norImageName: "mine_0", selImageName: "mine_15")
+        
+        let vc5 = ThreeViewController()
+        let nav5 = BaseNavViewController(rootViewController: vc5)
+        addChild(vc: nav5, title: "我的", norImageName: "mine_0", selImageName: "mine_15")
+        
     }
     
     func addChild(vc: UIViewController, title: String, norImageName: String, selImageName: String) {
-       
         vc.tabBarItem.title = title
         vc.tabBarItem.image = UIImage(named: norImageName)?.withRenderingMode(.alwaysOriginal)
         vc.tabBarItem.selectedImage = UIImage(named: selImageName)?.withRenderingMode(.alwaysOriginal)
         addChild(vc)
     }
+
 }
 
-extension JXYTabBarVC : UITabBarControllerDelegate{
-    func tabBarController(_ tabBarController: UITabBarController, didSelectTab selectedTab: UITab, previousTab: UITab?) {
-//        if selectedTab is UISearchTab { // 点击了搜索
-//            tabBar.isHidden = true
-//        }else {
-//            tabBar.isHidden = false
-//        }
+extension JXYTabBarVC {
+    // MARK: 设置UISearchTab
+    func configSearchTab(_ viewController: UIViewController, title: String) -> UISearchTab {
+        // UISearchTab，从TabBar分离出来单独显示
+        let searchTab = UISearchTab { tab in
+            
+            let navigationController = BaseNavViewController(rootViewController: viewController)
+            viewController.navigationItem.title = title
+            return navigationController
+        }
+//        searchTab.automaticallyActivatesSearch = true
+        return searchTab
+    }
+}
+
+extension JXYTabBarVC : UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        
     }
 }

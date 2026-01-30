@@ -11,7 +11,7 @@ class SecondViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "动态"
+        self.title = "通讯录"
         view.backgroundColor = .white
     }
     

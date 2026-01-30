@@ -1,5 +1,6 @@
 import UIKit
 
+
 class SearchViewController: UIViewController {
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -35,16 +36,28 @@ class SearchViewController: UIViewController {
         ])
 
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitle = "大学列表"
+        if #available(iOS 26.0, *) {
+            navigationItem.largeTitle = "大学列表"
+        } else {
+            // Fallback on earlier versions
+        }
         navigationItem.searchController = searchController
 //        navigationController?.setToolbarHidden(false, animated: false)
         // iOS26新增，允许将searchBar集成到UIToolbar
-        navigationItem.searchBarPlacementAllowsToolbarIntegration = true
+        if #available(iOS 26.0, *) {
+            navigationItem.searchBarPlacementAllowsToolbarIntegration = true
+        } else {
+            // Fallback on earlier versions
+        }
         let addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let refreshBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: nil)
         // 将searchBar集成到UIToolbar
-        toolbarItems = [addBarButtonItem, navigationItem.searchBarPlacementBarButtonItem, flexibleSpace, refreshBarButtonItem]
+        if #available(iOS 26.0, *) {
+            toolbarItems = [addBarButtonItem, navigationItem.searchBarPlacementBarButtonItem, flexibleSpace, refreshBarButtonItem]
+        } else {
+            // Fallback on earlier versions
+        }
     }
 }
 

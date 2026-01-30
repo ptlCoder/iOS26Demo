@@ -6,13 +6,31 @@
 //
 
 import UIKit
+import SwiftUI
 
 class FourViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+//        let profileView = ProfileViewSwiftUI(userId: "111111") { str in
+//            print("点击了按钮: \(str)")
+//        }
+//        let hostingVC = UIHostingController(rootView: profileView)
+//        hostingVC.view.frame = CGRect(x: 0, y: 100, width: UIScreen.main.bounds.size.width, height: 200)
+//        
+//        addChild(hostingVC)
+//        view.addSubview(hostingVC.view)
+//        hostingVC.didMove(toParent: self)
+//        hostingVC.view.backgroundColor = .yellow
+//        
+
+        let walletView = AyAiWalletHeadViewSwiftUI()
+        let walletVC = UIHostingController(rootView: walletView)
+        addChild(walletVC)
+        view.addSubview(walletVC.view)
+        walletVC.didMove(toParent: self)
+        walletVC.view.frame = CGRect(x: 0, y: 88, width: UIScreen.main.bounds.size.width, height: 600)
     }
     
 
