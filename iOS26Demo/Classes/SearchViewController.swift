@@ -26,7 +26,7 @@ class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "大学列表"
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -42,6 +42,8 @@ class SearchViewController: UIViewController {
             // Fallback on earlier versions
         }
         navigationItem.searchController = searchController
+//        navigationItem.hidesSearchBarWhenScrolling = false
+        
 //        navigationController?.setToolbarHidden(false, animated: false)
         // iOS26新增，允许将searchBar集成到UIToolbar
         if #available(iOS 26.0, *) {

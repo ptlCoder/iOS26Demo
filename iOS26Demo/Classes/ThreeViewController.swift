@@ -13,7 +13,7 @@ class ThreeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        self.title = "发现"
+        self.title = "发现"
         view.backgroundColor = .white
         
         let products = [

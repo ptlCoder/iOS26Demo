@@ -12,7 +12,7 @@ class FourViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "搜索"
 //        let profileView = ProfileViewSwiftUI(userId: "111111") { str in
 //            print("点击了按钮: \(str)")
 //        }

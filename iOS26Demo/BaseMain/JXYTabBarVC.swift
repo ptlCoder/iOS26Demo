@@ -130,11 +130,11 @@ extension JXYTabBarVC {
         let nav3 = BaseNavViewController(rootViewController: vc3)
         addChild(vc: nav3, title: "", norImageName: "center_icon", selImageName: "center_icon")
         
-        let vc4 = SearchViewController()
+        let vc4 = FourViewController()
         let nav4 = BaseNavViewController(rootViewController: vc4)
         addChild(vc: nav4, title: "搜索", norImageName: "mine_0", selImageName: "mine_15")
         
-        let vc5 = ThreeViewController()
+        let vc5 = SearchViewController()
         let nav5 = BaseNavViewController(rootViewController: vc5)
         addChild(vc: nav5, title: "我的", norImageName: "mine_0", selImageName: "mine_15")
         
@@ -147,21 +147,6 @@ extension JXYTabBarVC {
         addChild(vc)
     }
 
-}
-
-extension JXYTabBarVC {
-    // MARK: 设置UISearchTab
-    func configSearchTab(_ viewController: UIViewController, title: String) -> UISearchTab {
-        // UISearchTab，从TabBar分离出来单独显示
-        let searchTab = UISearchTab { tab in
-            
-            let navigationController = BaseNavViewController(rootViewController: viewController)
-            viewController.navigationItem.title = title
-            return navigationController
-        }
-//        searchTab.automaticallyActivatesSearch = true
-        return searchTab
-    }
 }
 
 extension JXYTabBarVC : UITabBarControllerDelegate {
