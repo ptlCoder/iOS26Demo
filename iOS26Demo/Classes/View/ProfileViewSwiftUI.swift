@@ -13,7 +13,38 @@ struct ProfileViewSwiftUI: View {
     var onClose: ((String)->Void)?
     var isLogin:  Bool = true
     
+    @State private var text = ""
+    @State private var password = ""
+    
+    
+    
+    enum Field {
+        case username, password
+    }
+    @FocusState private var focus: Field?
+
     var body: some View {
+        
+        TextField("用户名", text: $text)
+            .padding(10)
+            .font(.system(size: 16))
+            .foregroundStyle(.primary)
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.gray.opacity(0.15))
+            )
+            .frame(width: 220, height: 44)
+            .tint(.red) // 光标颜色
+            .submitLabel(.`return`)
+            .onSubmit {
+                print("---onSubmit-----")
+                focus = .password // 密码聚焦
+            }
+            .focused($focus, equals: .username)
+        
+        SecureField("密码", text: $password)
+            .focused($focus, equals: .password)
+        
 //        // 左上角
 //        VStack {
 //            HStack {
@@ -91,19 +122,19 @@ struct ProfileViewSwiftUI: View {
 //            Spacer()
 //        }
         
-        HStack {
-            Spacer()
-            Image(systemName: "checkmark")
-            Text("name")
-            Spacer()
-        }
-        .frame(height: 60)
-        .padding(.horizontal, 20)
-//        .background(Color.white)
-        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-        .overlay(
-            RoundedRectangle(cornerRadius: 8, style: .continuous)
-                .stroke(Color.blue, lineWidth: 1)
-        )
+//        HStack {
+//            Spacer()
+//            Image(systemName: "checkmark")
+//            Text("name")
+//            Spacer()
+//        }
+//        .frame(height: 60)
+//        .padding(.horizontal, 20)
+////        .background(Color.white)
+//        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+//        .overlay(
+//            RoundedRectangle(cornerRadius: 8, style: .continuous)
+//                .stroke(Color.blue, lineWidth: 1)
+//        )
     }
 }

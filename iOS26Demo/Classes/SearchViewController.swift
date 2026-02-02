@@ -1,11 +1,12 @@
 import UIKit
-
+import SwiftUI
 
 class SearchViewController: UIViewController {
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "abc")
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.rowHeight = 60.0
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.keyboardDismissMode = .onDrag
@@ -64,7 +65,7 @@ class SearchViewController: UIViewController {
 }
 
 // MARK: - UITableViewDataSource
-extension SearchViewController: UITableViewDataSource {
+extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return schoolArray.count
     }
@@ -73,5 +74,14 @@ extension SearchViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "abc", for: indexPath)
         cell.textLabel?.text = schoolArray[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let vc = UIHostingController(rootView: ProfileViewSwiftUI(userId: "110110\(indexPath.row)", onClose: {_ in 
+            self.navigationController?.popViewController(animated: true)
+        }))
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

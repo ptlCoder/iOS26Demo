@@ -21,8 +21,7 @@ class BaseNavViewController: UINavigationController, UIGestureRecognizerDelegate
 //        setupNavigationBar()
         
         self.delegate = self
-        
-        
+
     }
 }
 

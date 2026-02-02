@@ -79,12 +79,6 @@ extension FirstViewController: UITableViewDataSource, UITableViewDelegate  {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        
-//        let vc = UIHostingController(rootView: ProfileViewSwiftUI(userId: "110110\(indexPath.row)", onClose: {
-//            self.navigationController?.popViewController(animated: true)
-//        }))
-        
-//        navigationController?.pushViewController(vc, animated: true)
         let vc = SearchViewController()
         navigationController?.pushViewController(vc, animated: true)
         
