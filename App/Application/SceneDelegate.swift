@@ -19,7 +19,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: scene)
         self.window?.rootViewController = JXYTabBarVC()
 //        self.window?.rootViewController = JXYTabBarVC2()
-        
         self.window?.backgroundColor = .white
         self.window?.makeKeyAndVisible()
     }

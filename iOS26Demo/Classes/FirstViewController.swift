@@ -11,6 +11,7 @@ import SnapKit
 
 class FirstViewController: UIViewController {
 
+    var router: AppRouter!
     
     lazy var tableView: UITableView = {
         
@@ -47,6 +48,9 @@ class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        self.router = AppEnvironment.shared.router
+        
         self.navigationItem.title = "首页2"
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.largeTitleDisplayMode = .automatic
@@ -79,9 +83,13 @@ extension FirstViewController: UITableViewDataSource, UITableViewDelegate  {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let vc = SearchViewController()
-        navigationController?.pushViewController(vc, animated: true)
         
+        if indexPath.row < 5 {
+            let vc = FourViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        }else {
+            router.goHome(in: navigationController)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
