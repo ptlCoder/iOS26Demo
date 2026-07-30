@@ -17,8 +17,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         
         self.window = UIWindow(windowScene: scene)
-        self.window?.rootViewController = JXYTabBarVC()
+//        self.window?.rootViewController = JXYTabBarVC()
 //        self.window?.rootViewController = JXYTabBarVC2()
+        
+        self.window?.rootViewController = BaseNavViewController(rootViewController: JXYTabBarVC3())
         self.window?.backgroundColor = .white
         self.window?.makeKeyAndVisible()
     }

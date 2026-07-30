@@ -55,6 +55,7 @@
 		1ABCC64E2F557B4A0052F9EF /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABCC64D2F557B4A0052F9EF /* Storage.swift */; };
 		1ABCC6502F557B670052F9EF /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABCC64F2F557B670052F9EF /* UserDefaultsStorage.swift */; };
 		1ABCC6532F557E140052F9EF /* ProfileModuleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABCC6522F557E140052F9EF /* ProfileModuleProtocol.swift */; };
+		1AC1F6753016EDB600B15292 /* JXYTabBarVC3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1F6743016EDB600B15292 /* JXYTabBarVC3.swift */; };
 		1ACFD3432F558B1D00F842AB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACFD3422F558B1D00F842AB /* HomeViewController.swift */; };
 		1ACFD3452F5595FD00F842AB /* BaseStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACFD3442F5595FD00F842AB /* BaseStrategy.swift */; };
 		1ACFD3472F55976500F842AB /* ProfileStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACFD3462F55976500F842AB /* ProfileStrategy.swift */; };
@@ -110,6 +111,7 @@
 		1ABCC64D2F557B4A0052F9EF /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		1ABCC64F2F557B670052F9EF /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
 		1ABCC6522F557E140052F9EF /* ProfileModuleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModuleProtocol.swift; sourceTree = "<group>"; };
+		1AC1F6743016EDB600B15292 /* JXYTabBarVC3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXYTabBarVC3.swift; sourceTree = "<group>"; };
 		1ACFD3422F558B1D00F842AB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1ACFD3442F5595FD00F842AB /* BaseStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStrategy.swift; sourceTree = "<group>"; };
 		1ACFD3462F55976500F842AB /* ProfileStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStrategy.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 		1AABBECE2F16210E00A1454D /* BaseMain */ = {
 			isa = PBXGroup;
 			children = (
+				1AC1F6743016EDB600B15292 /* JXYTabBarVC3.swift */,
 				1AAA0D692F2C42DA0047A9C2 /* JXYTabBarVC2.swift */,
 				1AABBEB62F161FBE00A1454D /* JXYTabBarVC.swift */,
 				1AABBEC62F161FEB00A1454D /* BaseNavViewController.swift */,
@@ -531,6 +534,7 @@
 				1ABCC6202F5575DE0052F9EF /* AppBootstrap.swift in Sources */,
 				1ABCC6132F5573B50052F9EF /* HomeViewModel.swift in Sources */,
 				1ACFD3472F55976500F842AB /* ProfileStrategy.swift in Sources */,
+				1AC1F6753016EDB600B15292 /* JXYTabBarVC3.swift in Sources */,
 				1A7AB3572F19E22D00FBCD49 /* GridView.swift in Sources */,
 				1ABCC6162F55744E0052F9EF /* HomeSwiftUIView.swift in Sources */,
 				1ABCC6102F5573340052F9EF /* HomeDependenciesProtocol.swift in Sources */,
